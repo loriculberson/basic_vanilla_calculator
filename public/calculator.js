@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function numberBuilder (){  
     if (this.className === 'number'){
     numbersArray.push(this.innerHTML);
+    displayOnScreen(numbersArray);
     console.log("Input Array" , numbersArray);
     } else if (this.className === 'operator') {
       operator.push(this.innerHTML);
@@ -11,6 +12,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     } else {
       console.log('Not number or operator', this.innerHTML);
     }
+  };
+
+  function displayOnScreen(digits){
+    var screen = document.querySelector('#inputWindow');
+    var newText = document.createTextNode(digits.slice(-1)[0]);
+    screen.appendChild(newText);
   };
       
   var zero = document.querySelector('#zero');
