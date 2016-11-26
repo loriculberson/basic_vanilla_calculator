@@ -28,3 +28,8 @@ div {
   text-align: right;
   color: red;
 }
+
+.hidden {
+  visibility: hidden;
+}
+

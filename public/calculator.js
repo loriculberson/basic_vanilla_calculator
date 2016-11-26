@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var newText = document.createTextNode(digits.slice(-1)[0]);
     screen.appendChild(newText);
   };
+
+  function clearScreen(){
+    var screen = document.querySelector('#inputWindow');
+    screen.innerHTML = "";
+    numbersArray = [];
+    console.log("Numbers array in clear screen", numbersArray);
+  };
       
   var zero = document.querySelector('#zero');
   var one = document.querySelector('#one');
@@ -36,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var divide = document.querySelector('#divide');
   var multiply = document.querySelector('#multiply');
   var equals = document.querySelector('#equals');
+  var clear = document.querySelector('#clear');
 
   zero.addEventListener('click', numberBuilder);
   one.addEventListener('click', numberBuilder);
@@ -52,4 +60,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
   minus.addEventListener("click", numberBuilder);
   divide.addEventListener("click", numberBuilder);
   multiply.addEventListener("click", numberBuilder);
+  clear.addEventListener("click", clearScreen);
 });
