@@ -9,24 +9,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
       displayOnScreen(numbersArray);
     } else if (this.className === 'operator') {
       operator.push(this.innerHTML);
-      var numericValue = numberConverter();
-      computationValues.push(numericValue);
+      updateComputationValues();
       if (computationValues.length > 1) {
-        computeFirstTwoValuesInArray(numericValue);
+        computeFirstTwoValuesInArray();
       }
-      clearScreen();
       clearNumbersArray();
+      clearScreen();
     } else if (this.className === 'evaluate'){
-      var numericValue = numberConverter();
-      computationValues.push(numericValue);
+      updateComputationValues();
       if (computationValues.length > 1) {
-        computeFirstTwoValuesInArray(numericValue);
+        computeFirstTwoValuesInArray();
       }
     } else {
         console.log('ERROR');
     }
   };
 
+  function updateComputationValues(){ 
+    var numericValue = numberConverter();
+    computationValues.push(numericValue);
+  };
   function getValues(numberPressed) {
     numbersArray.push(numberPressed);
   };
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     return parseFloat(numbersArray.join(''));
   };
 
-  function computeFirstTwoValuesInArray (value){
+  function computeFirstTwoValuesInArray (){
       console.log("computation vals in case1 +: ", computationValues);
       var op = operator.slice(-1)[0];
       switch (op) {
