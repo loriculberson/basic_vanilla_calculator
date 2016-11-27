@@ -1,32 +1,90 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   var numbersArray = [];
   var operator = [];
+  var computationValues = [];
+  
   function numberBuilder (){  
     if (this.className === 'number'){
-    numbersArray.push(this.innerHTML);
-    displayOnScreen(numbersArray);
-    console.log("Input Array" , numbersArray);
+      getValues(this.innerHTML);
+      displayOnScreen(numbersArray);
     } else if (this.className === 'operator') {
       operator.push(this.innerHTML);
-      console.log("Operator", operator);
+      var numericValue = numberConverter();
+      computationValues.push(numericValue);
+      if (computationValues.length > 1) {
+        computeFirstTwoValuesInArray(numericValue);
+      }
+      clearScreen();
+      clearNumbersArray();
+    } else if (this.className === 'evaluate'){
+      var numericValue = numberConverter();
+      computationValues.push(numericValue);
+      if (computationValues.length > 1) {
+        computeFirstTwoValuesInArray(numericValue);
+      }
     } else {
-      console.log('Not number or operator', this.innerHTML);
+        console.log('ERROR');
     }
   };
 
+  function getValues(numberPressed) {
+    numbersArray.push(numberPressed);
+  };
+
+  function numberConverter(){
+    return parseFloat(numbersArray.join(''));
+  };
+
+  function computeFirstTwoValuesInArray (value){
+      console.log("computation vals in case1 +: ", computationValues);
+      var op = operator.slice(-1)[0];
+      switch (op) {
+        case "+":
+        var val = computationValues[0] + computationValues.slice(-1)[0];
+        computationValues = [];
+        computationValues.push(val);
+        console.log("computationVals in case2 +: ", computationValues);
+        displayAnswer(val);
+        break;
+    }
+  };
+
+  function compute() {
+    console.log("Inside compute function");
+    numberConverter();
+    computeFirstTwoValuesInArray();
+  };
+  
   function displayOnScreen(digits){
     var screen = document.querySelector('#inputWindow');
     var newText = document.createTextNode(digits.slice(-1)[0]);
+    screen.appendChild(newText);
+  };
+  
+  function displayAnswer(answer){
+    clearScreen();
+    var screen = document.querySelector('#inputWindow');
+    var newText = document.createTextNode(answer);
     screen.appendChild(newText);
   };
 
   function clearScreen(){
     var screen = document.querySelector('#inputWindow');
     screen.innerHTML = "";
-    numbersArray = [];
-    console.log("Numbers array in clear screen", numbersArray);
+    console.log("computation Values", computationValues);
   };
-      
+
+  function clearNumbersArray(){
+    numbersArray = [];
+  };
+  
+  function resetAll (){
+    computationValues = [];
+    numbersArray = [];
+    operator = [];
+    clearScreen();
+  };
+  
   var zero = document.querySelector('#zero');
   var one = document.querySelector('#one');
   var two = document.querySelector('#two');
@@ -60,5 +118,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   minus.addEventListener("click", numberBuilder);
   divide.addEventListener("click", numberBuilder);
   multiply.addEventListener("click", numberBuilder);
-  clear.addEventListener("click", clearScreen);
+  clear.addEventListener("click", resetAll);
+  equals.addEventListener("click", numberBuilder);
 });
