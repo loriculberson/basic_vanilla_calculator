@@ -1,7 +1,7 @@
 /*
  * Unit tests for lib/calculator.js
  */
-describe('Calculator', function() {
+describe('Calculator adding', function() {
   // inject the HTML fixture for the tests
   beforeEach(function() {
     var fixture = '<div class="calculator">' +
@@ -75,5 +75,15 @@ describe('Calculator', function() {
     document.querySelector('#five').click();
     document.querySelector('#equals').click();
     expect(document.querySelector('#inputWindow').innerHTML).toBe('3.65');
+  });
+  
+  it('should return 6 for 1 + 2 + 3', function() {
+    document.querySelector('#one').click();
+    document.querySelector('#plus').click();
+    document.querySelector('#two').click();
+    document.querySelector('#plus').click();
+    document.querySelector('#three').click();
+    document.querySelector('#equals').click();
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
   });
 });
