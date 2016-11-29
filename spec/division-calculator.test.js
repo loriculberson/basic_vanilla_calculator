@@ -75,7 +75,7 @@ describe('Calculator division', function() {
     expect(document.querySelector('#inputWindow').innerHTML).toBe('2');
   });
   
-  it('should return 14.727272 for 81 / 5.5', function() {
+  it('should return 14.72727273 for 81 / 5.5', function() {
     document.querySelector('#eight').click();
     document.querySelector('#one').click();
     document.querySelector('#divide').click();
