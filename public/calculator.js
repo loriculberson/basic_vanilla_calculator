@@ -45,20 +45,18 @@ function startCalc(){
       switch (op) {
         case "+":
         var val = computationValues[0] + computationValues.slice(-1)[0];
-        computationValues = [];
-        computationValues.push(val);
-        console.log("computationVals in case2 +: ", computationValues);
-        displayAnswer(val);
         break;
 
         case "-":
         var val = computationValues[0] - computationValues.slice(-1)[0];
-        computationValues = [];
-        computationValues.push(val);
-        console.log("Substration1: ", computationValues);
-        displayAnswer(val);
+        break;
+        case "x":
+        var val = computationValues[0] * computationValues.slice(-1)[0];
         break;
     }
+        computationValues = [];
+        computationValues.push(val);
+        displayAnswer(val);
   };
 
   function compute() {
