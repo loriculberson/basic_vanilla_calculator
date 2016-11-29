@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+function startCalc(){
   var numbersArray = [];
   var operator = [];
   var computationValues = [];
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (this.className === 'number'){
       getValues(this.innerHTML);
       displayOnScreen(numbersArray);
+
     } else if (this.className === 'operator') {
       operator.push(this.innerHTML);
       updateComputationValues();
@@ -15,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
       clearNumbersArray();
       clearScreen();
+
     } else if (this.className === 'evaluate'){
       updateComputationValues();
       if (computationValues.length > 1) {
@@ -122,4 +124,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
   multiply.addEventListener("click", numberBuilder);
   clear.addEventListener("click", resetAll);
   equals.addEventListener("click", numberBuilder);
-});
+};
