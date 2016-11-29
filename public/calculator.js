@@ -50,9 +50,17 @@ function startCalc(){
         case "-":
         var val = computationValues[0] - computationValues.slice(-1)[0];
         break;
+
         case "x":
         var val = computationValues[0] * computationValues.slice(-1)[0];
         break;
+        
+        case "/":
+        var val = computationValues[0] / computationValues.slice(-1)[0];
+          if (val.toString().length > 10){
+            val = parseFloat(val.toFixed(8));
+          }
+          break;
     }
         computationValues = [];
         computationValues.push(val);

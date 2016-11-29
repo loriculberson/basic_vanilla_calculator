@@ -1,7 +1,7 @@
 /*
  * Unit tests for lib/calculator.js
  */
-describe('Calculator subtract', function() {
+describe('Calculator subtraction', function() {
   // inject the HTML fixture for the tests
   beforeEach(function() {
     var fixture = '<div class="calculator">' +

@@ -1,7 +1,7 @@
 /*
  * Unit tests for lib/calculator.js
  */
-describe('Calculator multiplication', function() {
+describe('Calculator division', function() {
   // inject the HTML fixture for the tests
   beforeEach(function() {
     var fixture = '<div class="calculator">' +
@@ -56,33 +56,33 @@ describe('Calculator multiplication', function() {
   });
 
   //adding
-  it('should return 6 for 3 * 2', function() {
-    document.querySelector('#three').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#two').click();
-    document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
-  });
-  
-  it('should return 4.32 for 1.2 * 3.6', function() {
-    document.querySelector('#one').click();
-    document.querySelector('#decimal').click();
-    document.querySelector('#two').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#three').click();
-    document.querySelector('#decimal').click();
+  it('should return 3 for 6 / 2', function() {
     document.querySelector('#six').click();
+    document.querySelector('#divide').click();
+    document.querySelector('#two').click();
     document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('4.32');
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('3');
   });
   
-  it('should return 24 for 2 * 3 * 4', function() {
+  it('should return 2 for  12 / 3 / 2', function() {
+    document.querySelector('#one').click();
     document.querySelector('#two').click();
-    document.querySelector('#multiply').click();
+    document.querySelector('#divide').click();
     document.querySelector('#three').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#four').click();
+    document.querySelector('#divide').click();
+    document.querySelector('#two').click();
     document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('24');
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('2');
+  });
+  
+  it('should return 14.727272 for 81 / 5.5', function() {
+    document.querySelector('#eight').click();
+    document.querySelector('#one').click();
+    document.querySelector('#divide').click();
+    document.querySelector('#five').click();
+    document.querySelector('#decimal').click();
+    document.querySelector('#five').click();
+    document.querySelector('#equals').click();
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('14.72727273');
   });
 });
