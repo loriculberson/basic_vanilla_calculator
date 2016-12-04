@@ -2,7 +2,7 @@ function startCalc(){
   var numbersArray = [];
   var operator = [];
   var computationValues = [];
-  
+
   function numberBuilder (){  
     getValues(this.innerHTML);
     displayOnScreen(numbersArray);
@@ -37,7 +37,12 @@ function startCalc(){
   };
 
   function getValues(numberPressed) {
-    numbersArray.push(numberPressed);
+    if (numberPressed != ".") {
+      numbersArray.push(numberPressed);
+    } else if (numberPressed === "." && numbersArray.indexOf(".") === -1) {
+      numbersArray.push(numberPressed);
+    }
+    console.log("Numbers Array: ", numbersArray);
   };
 
   function numberConverter(){
@@ -73,8 +78,8 @@ function startCalc(){
 
   function displayOnScreen(digits){
     var screen = document.querySelector('#inputWindow');
-    var newText = document.createTextNode(digits.slice(-1)[0]);
-    screen.appendChild(newText);
+    var newText = digits.join('');
+    screen.innerHTML = newText;
   };
   
   function displayAnswer(answer){
