@@ -12,5 +12,5 @@
 * Visit `http://localhost:5000`
 
 ## How to Run the test suite
-* In another tab, run: npm test
+* In another tab, run: `npm test`
 
