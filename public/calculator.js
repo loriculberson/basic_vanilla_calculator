@@ -4,40 +4,38 @@ function startCalc(){
   var computationValues = [];
   
   function numberBuilder (){  
-    if (this.className === 'number'){
-      getValues(this.innerHTML);
-      displayOnScreen(numbersArray);
-    console.log('Numbers array: ', numbersArray);
+    getValues(this.innerHTML);
+    displayOnScreen(numbersArray);
+  };
+  
+  function selectOperator(){
+    updateComputationValues();
 
-    } else if (this.className === 'operator') {
-      console.log('Operator: ', operator);
-      updateComputationValues();
+    if (computationValues.length > 1) {
+      computeFirstTwoValuesInArray();
+      operator= [];
+    } 
+  
+    operator.push(this.innerHTML);
+    clearScreen();
+  };
 
-      if (computationValues.length > 1) {
-        computeFirstTwoValuesInArray();
-        operator= [];
-      } 
-      operator.push(this.innerHTML);
-      clearScreen();
+  function solveProblem(){
+    updateComputationValues();
     
-    } else if (this.className === 'evaluate'){
-      updateComputationValues();
-      if (computationValues.length > 1) {
-        computeFirstTwoValuesInArray();
-      }
-    } else {
-        this.innerHTML = "ERROR";
+    if (computationValues.length > 1) {
+      computeFirstTwoValuesInArray();
     }
   };
 
   function updateComputationValues(){ 
-    console.log('Numbers array: ', numbersArray);
     if (numbersArray.length > 0) {
       var numericValue = numberConverter();
       computationValues.push(numericValue);
       clearNumbersArray();
     }
   };
+
   function getValues(numberPressed) {
     numbersArray.push(numberPressed);
   };
@@ -47,26 +45,21 @@ function startCalc(){
   };
 
   function computeFirstTwoValuesInArray (){
-      console.log("computation vals in case1 +: ", computationValues);
       var op = operator.slice(-1)[0];
       switch (op) {
         case "+":
-      console.log('Operator: ', operator);
         var val = computationValues[0] + computationValues.slice(-1)[0];
         break;
 
         case "-":
-      console.log('Operator: ', operator);
         var val = computationValues[0] - computationValues.slice(-1)[0];
         break;
 
         case "x":
-      console.log('Operator: ', operator);
         var val = computationValues[0] * computationValues.slice(-1)[0];
         break;
         
         case "/":
-      console.log('Operator: ', operator);
         var val = computationValues[0] / computationValues.slice(-1)[0];
           if (val.toString().length > 10){
             val = parseFloat(val.toFixed(8));
@@ -78,12 +71,6 @@ function startCalc(){
         displayAnswer(val);
   };
 
-  function compute() {
-    console.log("Inside compute function");
-    numberConverter();
-    computeFirstTwoValuesInArray();
-  };
-  
   function displayOnScreen(digits){
     var screen = document.querySelector('#inputWindow');
     var newText = document.createTextNode(digits.slice(-1)[0]);
@@ -100,7 +87,6 @@ function startCalc(){
   function clearScreen(){
     var screen = document.querySelector('#inputWindow');
     screen.innerHTML = "";
-    console.log("computation Values", computationValues);
   };
 
   function clearNumbersArray(){
@@ -143,10 +129,10 @@ function startCalc(){
   eight.addEventListener("click", numberBuilder);
   nine.addEventListener("click", numberBuilder);
   decimal.addEventListener("click", numberBuilder);
-  plus.addEventListener("click", numberBuilder);
-  minus.addEventListener("click", numberBuilder);
-  divide.addEventListener("click", numberBuilder);
-  multiply.addEventListener("click", numberBuilder);
+  plus.addEventListener("click", selectOperator);
+  minus.addEventListener("click", selectOperator);
+  divide.addEventListener("click", selectOperator);
+  multiply.addEventListener("click", selectOperator);
   clear.addEventListener("click", resetAll);
-  equals.addEventListener("click", numberBuilder);
+  equals.addEventListener("click", solveProblem);
 };
