@@ -86,4 +86,15 @@ describe('Calculator adding', function() {
     document.querySelector('#equals').click();
     expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
   });
+  
+  it('should return 7 for 1 + 2 = + 3', function() {
+    document.querySelector('#one').click();
+    document.querySelector('#plus').click();
+    document.querySelector('#two').click();
+    document.querySelector('#equals').click();
+    document.querySelector('#plus').click();
+    document.querySelector('#three').click();
+    document.querySelector('#equals').click();
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
+  });
 });

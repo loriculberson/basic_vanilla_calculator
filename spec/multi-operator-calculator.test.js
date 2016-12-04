@@ -1,7 +1,7 @@
 /*
  * Unit tests for lib/calculator.js
  */
-describe('Calculator multiplication', function() {
+describe('Calculator multiple operators', function() {
   // inject the HTML fixture for the tests
   beforeEach(function() {
     var fixture = '<div class="calculator">' +
@@ -55,45 +55,18 @@ describe('Calculator multiplication', function() {
     startCalc();
   });
 
-  //adding
-  it('should return 6 for 3 * 2', function() {
-    document.querySelector('#three').click();
-    document.querySelector('#multiply').click();
+  it('should return 11 for 24 / 6 x 3 + 1 - 2', function() {
     document.querySelector('#two').click();
-    document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
-  });
-  
-  it('should return 4.32 for 1.2 * 3.6', function() {
-    document.querySelector('#one').click();
-    document.querySelector('#decimal').click();
-    document.querySelector('#two').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#three').click();
-    document.querySelector('#decimal').click();
+    document.querySelector('#four').click();
+    document.querySelector('#divide').click();
     document.querySelector('#six').click();
-    document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('4.32');
-  });
-  
-  it('should return 24 for 2 * 3 * 4', function() {
-    document.querySelector('#two').click();
     document.querySelector('#multiply').click();
     document.querySelector('#three').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#four').click();
-    document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('24');
-  });
-  
-  it('should return 24 for 2 * 3 = * 4', function() {
+    document.querySelector('#plus').click();
+    document.querySelector('#one').click();
+    document.querySelector('#minus').click();
     document.querySelector('#two').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#three').click();
     document.querySelector('#equals').click();
-    document.querySelector('#multiply').click();
-    document.querySelector('#four').click();
-    document.querySelector('#equals').click();
-    expect(document.querySelector('#inputWindow').innerHTML).toBe('24');
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('11');
   });
 });

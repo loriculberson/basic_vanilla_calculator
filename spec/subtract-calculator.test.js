@@ -85,5 +85,16 @@ describe('Calculator subtraction', function() {
     document.querySelector('#equals').click();
     expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
   });
+  it('should return 6 for 10 - 3 = - 1', function() {
+    document.querySelector('#one').click();
+    document.querySelector('#zero').click();
+    document.querySelector('#minus').click();
+    document.querySelector('#three').click();
+    document.querySelector('#equals').click();
+    document.querySelector('#minus').click();
+    document.querySelector('#one').click();
+    document.querySelector('#equals').click();
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('6');
+  });
   
 });

@@ -85,4 +85,15 @@ describe('Calculator division', function() {
     document.querySelector('#equals').click();
     expect(document.querySelector('#inputWindow').innerHTML).toBe('14.72727273');
   });
+  
+  it('should return 2 for 24 / 6 / 2', function() {
+    document.querySelector('#two').click();
+    document.querySelector('#four').click();
+    document.querySelector('#divide').click();
+    document.querySelector('#six').click();
+    document.querySelector('#divide').click();
+    document.querySelector('#two').click();
+    document.querySelector('#equals').click();
+    expect(document.querySelector('#inputWindow').innerHTML).toBe('2');
+  });
 });

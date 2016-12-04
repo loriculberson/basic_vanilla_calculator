@@ -7,29 +7,36 @@ function startCalc(){
     if (this.className === 'number'){
       getValues(this.innerHTML);
       displayOnScreen(numbersArray);
+    console.log('Numbers array: ', numbersArray);
 
     } else if (this.className === 'operator') {
-      operator.push(this.innerHTML);
+      console.log('Operator: ', operator);
       updateComputationValues();
+
       if (computationValues.length > 1) {
         computeFirstTwoValuesInArray();
-      }
-      clearNumbersArray();
+        operator= [];
+      } 
+      operator.push(this.innerHTML);
       clearScreen();
-
+    
     } else if (this.className === 'evaluate'){
       updateComputationValues();
       if (computationValues.length > 1) {
         computeFirstTwoValuesInArray();
       }
     } else {
-        console.log('ERROR');
+        this.innerHTML = "ERROR";
     }
   };
 
   function updateComputationValues(){ 
-    var numericValue = numberConverter();
-    computationValues.push(numericValue);
+    console.log('Numbers array: ', numbersArray);
+    if (numbersArray.length > 0) {
+      var numericValue = numberConverter();
+      computationValues.push(numericValue);
+      clearNumbersArray();
+    }
   };
   function getValues(numberPressed) {
     numbersArray.push(numberPressed);
@@ -44,18 +51,22 @@ function startCalc(){
       var op = operator.slice(-1)[0];
       switch (op) {
         case "+":
+      console.log('Operator: ', operator);
         var val = computationValues[0] + computationValues.slice(-1)[0];
         break;
 
         case "-":
+      console.log('Operator: ', operator);
         var val = computationValues[0] - computationValues.slice(-1)[0];
         break;
 
         case "x":
+      console.log('Operator: ', operator);
         var val = computationValues[0] * computationValues.slice(-1)[0];
         break;
         
         case "/":
+      console.log('Operator: ', operator);
         var val = computationValues[0] / computationValues.slice(-1)[0];
           if (val.toString().length > 10){
             val = parseFloat(val.toFixed(8));
