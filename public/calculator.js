@@ -17,7 +17,7 @@ function startCalc(){
     } 
   
     operator.push(this.innerHTML);
-    clearScreen();
+    displayOnScreen(computationValues);
   };
 
   function solveProblem(){
