@@ -42,7 +42,6 @@ function startCalc(){
     } else if (numberPressed === "." && numbersArray.indexOf(".") === -1) {
       numbersArray.push(numberPressed);
     }
-    console.log("Numbers Array: ", numbersArray);
   };
 
   function numberConverter(){
@@ -66,27 +65,38 @@ function startCalc(){
         
         case "/":
         var val = computationValues[0] / computationValues.slice(-1)[0];
-          if (val.toString().length > 10){
-            val = parseFloat(val.toFixed(8));
-          }
-          break;
+        break;
     }
+        if (val.toString().length > 10){
+          val = parseFloat(val.toFixed(8));
+        }
         computationValues = [];
         computationValues.push(val);
         displayAnswer(val);
+  };
+  
+  function selectFontSizeClass (val){
+    var div = document.querySelector('.numbers')
+    if (val.toString().length >= 14) {
+      div.classList.add('small-numbers');
+      //div.classList.toggle('small-numbers');
+    } else {
+      div.classList.remove('small-numbers');
+    }
   };
 
   function displayOnScreen(digits){
     var screen = document.querySelector('#inputWindow');
     var newText = digits.join('');
+    selectFontSizeClass(digits);
     screen.innerHTML = newText;
   };
   
   function displayAnswer(answer){
     clearScreen();
+    selectFontSizeClass(answer);
     var screen = document.querySelector('#inputWindow');
-    var newText = document.createTextNode(answer);
-    screen.appendChild(newText);
+    screen.innerHTML = answer;
   };
 
   function clearScreen(){
