@@ -1,4 +1,4 @@
-##Basic Calculator App
+## Basic Calculator App
 
 <strong>Tech stack:</strong> Vanilla JavaScript, Node and Karma for testing. 
 
